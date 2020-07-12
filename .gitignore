@@ -1,0 +1,4 @@
+# Temp files
+.*.swp
+__pycache__/*
+config.yaml
