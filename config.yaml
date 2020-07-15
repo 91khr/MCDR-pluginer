@@ -1,12 +1,9 @@
 # The directory for MCDR to read plugins
-plugins_dir: ../server/MCDR_server/plugins
+plugins_dir: ../MCDR/plugins
 
 # The directory to store plugin repository
-repo_dir: ../server/plugins_git
+repo_dir: ../plugins_repo
 
 # The plugin list
 plugins:
-  - TISUnion/Here
-  - url: 91khr/QuickBackupM
-    content: QuickBackupM.py
 
