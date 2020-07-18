@@ -1,4 +1,4 @@
-from src.status import PluginStatus, PluginAction
+from status import PluginStatus, PluginAction
 from subprocess import getoutput
 import os
 
@@ -14,12 +14,12 @@ def query(plg: str) -> PluginStatus:
     else:
         return PluginStatus.Diverged
 
-def sync(path: str, action: PluginAction, url: str = None) -> bool:
+def sync(path: str, action: PluginAction, url: str = None) -> int:
     """ Synchronize a plugin to the plugin repo """
     if action == PluginAction.Install:
         if url == None:
             raise ValueError("Expected a non-null url")
-        os.system(f"git clone --progress {url} {path}")
+        return os.system(f"git clone --progress {url} {path}")
     elif action == PluginAction.Update:
-        os.system(f"git -C {path} pull --ff-only --progress --rebase=false")
+        return os.system(f"git -C {path} pull --ff-only --progress --rebase=false")
 
