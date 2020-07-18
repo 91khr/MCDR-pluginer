@@ -1,18 +1,18 @@
-from status import PluginState, PluginAction
+from src.status import PluginStatus, PluginAction
 from subprocess import getoutput
 import os
 
-def query(plg: str) -> PluginState:
+def query(plg: str) -> PluginStatus:
     """ Query the state of a plugin """
     local = getoutput(f"git -C {plg} rev-parse @")
     remote = getoutput(f"git -C {plg} rev-parse @{{u}}")
     base = getoutput(f"git -C {plg} merge-base @ @{{u}}")
     if local == remote:
-        return PluginState.UpToDate
+        return PluginStatus.UpToDate
     elif local == base:
-        return PluginState.NeedUpdate
+        return PluginStatus.NeedUpdate
     else:
-        return PluginState.Diverged
+        return PluginStatus.Diverged
 
 def sync(path: str, action: PluginAction, url: str = None) -> bool:
     """ Synchronize a plugin to the plugin repo """
